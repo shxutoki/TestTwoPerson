@@ -51,6 +51,8 @@ public class GazeBehaviorVisualization : MonoBehaviour
     private GradientColorKey[] colorKey;
     private GradientAlphaKey[] alphaKey;
 
+    public Color gazeCursorColor;
+
     private int frameCount;
     private const float neighborThreshold = 0.05f;
 
@@ -76,6 +78,8 @@ public class GazeBehaviorVisualization : MonoBehaviour
         alphaKey[1].time = 1.0f;
 
         gradient.SetKeys(colorKey, alphaKey);
+
+        GazepointVis.GetComponentInChildren<Renderer>().material.color = gazeCursorColor;
 
     }
 

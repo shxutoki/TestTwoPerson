@@ -48,4 +48,9 @@ public class GazeSend : MonoBehaviour
     {
         Debug.Log($"<color=red>Stop Client (address: {address}, port: {port})</color>");
     }
+
+    public void SetPartnerIp(string ip)
+    {
+        GetComponent<uOscClient>().address = ip;
+    }
 }
