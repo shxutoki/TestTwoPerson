@@ -47,7 +47,7 @@ public class GazeBehaviorVisualization : MonoBehaviour
 
     private MeshRenderer HololensRenderer;
 
-    public Gradient gradient;
+    private Gradient gradient;
     private GradientColorKey[] colorKey;
     private GradientAlphaKey[] alphaKey;
 
@@ -139,6 +139,11 @@ public class GazeBehaviorVisualization : MonoBehaviour
             sphereHeatPoint.GetComponentInChildren<Renderer>().material.color = color;
         }
         prevGaze = GazepointVis.transform.position;
+        if (SphereQueue.Count > 50)
+        {
+            GameObject gaze = SphereQueue.Dequeue();
+            Destroy(gaze);
+        }
     }
 
     public void OnReviewGaze()

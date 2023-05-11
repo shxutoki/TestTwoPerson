@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GazeSender.unity
-    guid: e9601363133d1044d817d79f0e56390c
+    path: Assets/Scenes/GazeSenderDebug2.unity
+    guid: f865ccd185a302f488ab858561b20e86
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: ea4d393f0ebe5914b856c4e61a3fa9a0, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b9e9e69c8c087f64b9a47ec196358435, type: 2}
