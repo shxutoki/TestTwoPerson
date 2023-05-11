@@ -10,4 +10,8 @@
         - [x]  trajectory of saccades: transparent 100 → 0
         - [x]  conclusion of interest: review the color
 - [ ]  Synchronization
-    - [ ]  Coordinate synchronization
+    - [x]  Coordinate synchronization
+
+
+- [ ]  Debug
+    - [ ]  Visualization of gaze behavior will cause HoloLens application crash   
