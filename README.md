@@ -3,7 +3,7 @@
 
 This project is part of my doctoral thesis research. Two users in a co-located environment can share their gaze in real-time.
 
-## Use Flow
+## Application Flow
 
 1. Print a QR code before starting to use. Place the printed QR code in the workspace of collaboration.
 2. Two users wear the Hololens and launch this application. Sometimes the HoloLens will request calibration of users' gaze, if so, please follow the guidance of HoloLens.
@@ -15,7 +15,12 @@ This project is part of my doctoral thesis research. Two users in a co-located e
 - Unity 2020.4
 - MRTK 2.8.3
 
-#Todos
+# References
+[MRTK](https://github.com/microsoft/MixedRealityToolkit-Unity）SDK for HoloLens application development.
+[QR tracking](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/qr-code-tracking-overview) SDK for QR tracking in HoloLens.
+[Uosc](https://github.com/hecomi/uOSC) SDK for network synchronization.
+
+# Todos
 
 - [x]  Visualization of gaze
     - [x]  Gaze point of partner
@@ -32,4 +37,4 @@ This project is part of my doctoral thesis research. Two users in a co-located e
 
 
 - [ ]  Debug
-    - [ ]  Visualization of gaze behavior will cause HoloLens application crash   
+    - [x]  Visualization of gaze behavior will cause HoloLens application crash   
