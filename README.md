@@ -15,6 +15,8 @@ This project is part of my doctoral thesis research. Two users in a co-located e
 - Unity 2020.4
 - MRTK 2.8.3
 
+#Todos
+
 - [x]  Visualization of gaze
     - [x]  Gaze point of partner
     - [x]  Gaze ray of partner
