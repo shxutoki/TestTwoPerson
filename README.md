@@ -16,9 +16,9 @@ This project is part of my doctoral thesis research. Two users in a co-located e
 - MRTK 2.8.3
 
 # References
-- [MRTK](https://github.com/microsoft/MixedRealityToolkit-Unity）SDK for HoloLens application development.
-- [QR tracking](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/qr-code-tracking-overview) SDK for QR tracking in HoloLens.
-- [Uosc](https://github.com/hecomi/uOSC) SDK for network synchronization.
+- [MRTK](https://github.com/microsoft/MixedRealityToolkit-Unity): SDK for HoloLens application development.
+- [QR tracking](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/qr-code-tracking-overview): SDK for QR tracking in HoloLens.
+- [Uosc](https://github.com/hecomi/uOSC): SDK for network synchronization.
 
 # Todos
 
