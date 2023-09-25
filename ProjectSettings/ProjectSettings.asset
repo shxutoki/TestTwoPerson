@@ -689,10 +689,10 @@ PlayerSettings:
       PointOfService: True
       RecordedCallsFolder: True
       Contacts: True
+      InternetClient: True
       Proximity: True
       CodeGeneration: True
       BackgroundMediaPlayback: True
-      InternetClient: True
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: True
