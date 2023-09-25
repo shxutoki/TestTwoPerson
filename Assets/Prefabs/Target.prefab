@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1782754576098362760}
   - component: {fileID: 1782754576098362767}
   - component: {fileID: 1782754576098362766}
+  - component: {fileID: -6797809759529709861}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -96,3 +97,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6797809759529709861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782754576098362765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cd192bdbd3be443b4360f88366d1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}

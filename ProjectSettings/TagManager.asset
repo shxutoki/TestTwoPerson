@@ -8,6 +8,8 @@ TagManager:
   - IsManipulable
   - GazeCursor
   - OtherCursor
+  - Bullet
+  - Model
   layers:
   - Default
   - TransparentFX
