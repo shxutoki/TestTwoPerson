@@ -135,7 +135,9 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -4712508756314312088, guid: 2733d831ad826ed46a10cbb863cdd13a, type: 2}
+  - {fileID: 3563954919475236723, guid: b9e9e69c8c087f64b9a47ec196358435, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -599,7 +601,7 @@ PlayerSettings:
     4: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     7: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL
     13: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
-    14: PUN_2_19_OR_NEWER;USE_INPUT_SYSTEM_POSE_CONTROL;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER
+    14: PUN_2_19_OR_NEWER;USE_INPUT_SYSTEM_POSE_CONTROL;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;VUPLEX_CCU;VUPLEX_MRTK
     19: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     21: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     25: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
@@ -664,8 +666,8 @@ PlayerSettings:
       LowLevelDevices: True
       InternetClientServer: True
       OfflineMapsManagement: True
-      BackgroundMediaPlayback: True
       Objects3D: True
+      Proximity: True
       RemoteSystem: True
       BlockedChatMessages: True
       PhoneCall: True
@@ -687,9 +689,9 @@ PlayerSettings:
       PointOfService: True
       RecordedCallsFolder: True
       Contacts: True
-      Proximity: True
       InternetClient: True
       CodeGeneration: True
+      BackgroundMediaPlayback: True
       EnterpriseAuthentication: True
   metroTargetDeviceFamilies:
     Desktop: False

@@ -9,6 +9,9 @@ public class GazeSend : MonoBehaviour
     public GameObject GazePointVis;
     public GameObject HeadVis;
 
+    public int IgnoreGazeLayerMask = 8;
+    public float maxDistance = 10.0f;
+
     public float defaultDistanceInMeters = 2;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,8 @@ public class GazeSend : MonoBehaviour
         {
             HeadVis.transform.position = Camera.main.transform.position;//eyeGazeProvider.GazeOrigin;
             RaycastHit hitInfo;
-            Physics.Raycast(Camera.main.transform.position/*eyeGazeProvider.GazeOrigin*/, eyeGazeProvider.GazeDirection, out hitInfo);
+            Physics.Raycast(Camera.main.transform.position/*eyeGazeProvider.GazeOrigin*/, eyeGazeProvider.GazeDirection, out hitInfo, maxDistance, 8);
+            //Debug.Log(hitInfo.point);
             if (hitInfo.point != Vector3.zero)
             {
                 GazePointVis.transform.position = hitInfo.point;

@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class WalkToTarget : MonoBehaviour
 {
-
+    IEnumerator coroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,11 @@ public class WalkToTarget : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
     public void Walk()
     {
         GameObject[] models = GameObject.FindGameObjectsWithTag("Model");
@@ -25,7 +30,7 @@ public class WalkToTarget : MonoBehaviour
         {
             if (model.gameObject.GetPhotonView().IsMine)
             {
-                model.GetComponent<MotionManager>().WalktoPosition(this.transform.position);
+                model.GetComponent<MotionManager>().WalktoPosition(coroutine, this.transform.position);
             }
         }
     }

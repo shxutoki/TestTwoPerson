@@ -41,9 +41,9 @@ public class MotionManager : MonoBehaviour
 
     }
 
-    public void WalktoPosition(Vector3 newPosition)
+    public void WalktoPosition(IEnumerator coroutine, Vector3 newPosition)
     {
-        IEnumerator coroutine = Walk(newPosition);
+        coroutine = Walk(newPosition);
         StartCoroutine(coroutine);
     }
 

@@ -5,9 +5,13 @@ namespace Photon.Pun
     public class PhotonFashionView : MonoBehaviourPun, IPunObservable
     {
 
-        public bool m_SynchronizePosition = true;
+        public bool m_SynchronizeSize = true;
+        public bool m_SynchronizeTex = true;
+
+        public int tex_Num = 0;
 
         public List<GameObject> fasions_object;
+        public List<Texture> TshirtTex;
         public List<bool> fasions_vaild;
 
         bool m_firstTake = false;
@@ -41,7 +45,7 @@ namespace Photon.Pun
             // Write
             if (stream.IsWriting)
             {
-                if (this.m_SynchronizePosition)
+                if (this.m_SynchronizeSize)
                 {
                     int fasion_num = fasions_object.Count;
                     for (int fasion_id = 0; fasion_id < fasion_num; fasion_id++)
@@ -51,11 +55,16 @@ namespace Photon.Pun
 
                 }
 
+                if (this.m_SynchronizeTex)
+                {
+                    stream.SendNext(tex_Num);
+                }
+
             }
             // Read
             else
             {
-                if (this.m_SynchronizePosition)
+                if (this.m_SynchronizeSize)
                 {
                     int fasion_num = fasions_object.Count;
                     for (int fasion_id = 0; fasion_id < fasion_num; fasion_id++)
@@ -64,6 +73,15 @@ namespace Photon.Pun
                         fasions_vaild[fasion_id] = m_Networ_fasions_vaild;
                     }
 
+                }
+
+                if (this.m_SynchronizeTex)
+                {
+                    tex_Num = (int)stream.ReceiveNext();
+                    foreach (GameObject obj in this.fasions_object)
+                    {
+                        obj.GetComponent<Renderer>().material.mainTexture = TshirtTex[tex_Num];
+                    }
                 }
 
             }

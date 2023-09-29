@@ -1,6 +1,8 @@
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Tap : MonoBehaviour, IMixedRealityGestureHandler
 {
@@ -30,8 +32,17 @@ public class Tap : MonoBehaviour, IMixedRealityGestureHandler
 
     public void OnGestureCompleted(InputEventData eventData)
     {
+        if (this.gameObject.transform.childCount != 0)
+        {
+            WalkToTarget[] targets = GetComponentsInChildren<WalkToTarget>();
+            foreach(WalkToTarget child in targets)
+            {
+                Destroy(child.gameObject);
+            }
+        }
         Debug.Log("Gesture completed: " + eventData.MixedRealityInputAction.Description);
-        Instantiate(Target, myGaze.transform.position, myGaze.transform.rotation);
+        GameObject target = Instantiate(Target, myGaze.transform.position, myGaze.transform.rotation);
+        target.transform.parent = this.gameObject.transform;
     }
 
     public void OnGestureCanceled(InputEventData eventData)

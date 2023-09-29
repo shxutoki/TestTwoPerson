@@ -4064,17 +4064,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23f1bde341e99241aae6642ce7ca735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
+  m_SynchronizeSize: 1
+  m_SynchronizeTex: 1
+  tex_Num: 0
   fasions_object:
+  - {fileID: 7097364169325208891}
+  - {fileID: 8716517331654523640}
+  - {fileID: 3314000897633043736}
+  - {fileID: 6915690503707623459}
+  - {fileID: 164364816979982367}
   - {fileID: 7278276647150468858}
   - {fileID: 5970230479292486978}
   - {fileID: 1456080232101808843}
-  - {fileID: 6915690503707623459}
-  - {fileID: 3314000897633043736}
-  - {fileID: 8716517331654523640}
-  - {fileID: 164364816979982367}
-  - {fileID: 7097364169325208891}
-  fasions_vaild: 0100000000000000
+  TshirtTex:
+  - {fileID: 2800000, guid: 24dbbb79cf870db43bf453215024b5dc, type: 3}
+  - {fileID: 2800000, guid: 6b006b0992f7d4847ba563e880a3d20c, type: 3}
+  - {fileID: 2800000, guid: 04e22b09ff04af845a1d134ccc5575c9, type: 3}
+  - {fileID: 2800000, guid: 0458aa2d333560441b8ea1f351c4cc1b, type: 3}
+  - {fileID: 2800000, guid: 8a3a6a916a516904eb242b466b333c53, type: 3}
+  - {fileID: 2800000, guid: e6da3e75ff639724e9568ea4d9f8c333, type: 3}
+  - {fileID: 2800000, guid: 449745c0b9b959d4fbd9d6a4f6f24cff, type: 3}
+  - {fileID: 2800000, guid: dd1202b35dddacf4aa2e1efb055b0858, type: 3}
+  fasions_vaild: 0000010000000000
 --- !u!65 &7680314417055805175
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4114,7 +4125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7422698877350950392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1e1c3953429c5e4fb804cd997540db9, type: 3}
   m_Name: 
