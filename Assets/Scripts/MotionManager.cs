@@ -12,12 +12,12 @@ public class MotionManager : MonoBehaviour
         Idle = 0,
         Sitting,
         Walking,
-        Waving
+        Waving,
     }
 
     Animator animator;
 
-    AnimationType animationType;
+    public AnimationType animationType;
 
     public Vector3 targetPosition;
     public float collision_range = 1.0f;
@@ -107,5 +107,6 @@ public class MotionManager : MonoBehaviour
     public void SetAnimation(AnimationType animationType)
     {
         animator.SetInteger(animatorpara, (int)animationType);
+        Debug.Log("set animation: " + animationType.ToString());
     }
 }

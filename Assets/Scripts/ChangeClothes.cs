@@ -31,6 +31,8 @@ public class ChangeClothes : MonoBehaviour
                 FittingModel = fashionview.gameObject;
             }
         }
+
+        FittingModel.GetComponent<Animator>().SetBool("changeclothes", true);
         List<GameObject> modelClothess = FittingModel.GetComponent<PhotonFashionView>().fasions_object;
         FittingModel.GetComponent<PhotonFashionView>().tex_Num = this.texNum;
         Texture tex = this.gameObject.GetComponent<Renderer>().material.mainTexture;
