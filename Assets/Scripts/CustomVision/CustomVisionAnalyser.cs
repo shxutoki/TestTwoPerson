@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Microsoft.MixedReality.Toolkit;
+using Microsoft.MixedReality.Toolkit.UI;
+using Photon.Pun;
 
 public class CustomVisionAnalyser : MonoBehaviour
 {
@@ -16,8 +18,6 @@ public class CustomVisionAnalyser : MonoBehaviour
     public static CustomVisionAnalyser Instance;
 
     public float probabilityThreshold = 0.7f;
-
-    public float maxDistance = 2f;
 
 
     /// <summary>
@@ -48,6 +48,8 @@ public class CustomVisionAnalyser : MonoBehaviour
     /// </summary>
     internal Renderer quadRenderer;
 
+    private BoundingBox bbox;
+
 
     /// <summary>
     /// Initialises this class
@@ -55,7 +57,7 @@ public class CustomVisionAnalyser : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        predictionEndpoint = "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/c4ddd194-5352-44cb-8c50-55804f716121/detect/iterations/Iteration7/image";
+        predictionEndpoint = "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/c4ddd194-5352-44cb-8c50-55804f716121/detect/iterations/Iteration9/image";
     }
 
     /// <summary>
@@ -149,8 +151,22 @@ public class CustomVisionAnalyser : MonoBehaviour
                 GameObject objBoundingBox = DrawInSpace.Instance.DrawCube((float)bestPrediction.BoundingBox.Width, (float)bestPrediction.BoundingBox.Height);
                 objBoundingBox.transform.parent = quad.transform;
                 objBoundingBox.transform.localPosition = CalculateBoundingBoxPosition(quadBounds, bestPrediction.BoundingBox);
-                //DrawInSpace.Instance.ChooseMaterial(objBoundingBox, "BoundingBoxTransparentFlashy"); //optional
 
+                objBoundingBox.transform.SetParent(transform);
+                MakeBoundingBoxInteractable(objBoundingBox);
+
+                if (bestPrediction.TagName == "Chair")
+                {
+                    GameObject[] models = GameObject.FindGameObjectsWithTag("Model");
+                    foreach (GameObject model in models)
+                    {
+                        if (model.gameObject.GetPhotonView().IsMine)
+                        {
+                            IEnumerator coroutine = null;
+                            model.GetComponent<MotionManager>().InteractSit(coroutine, objBoundingBox.transform.position);
+                        }
+                    }
+                }
             }
         }
 
@@ -246,31 +262,28 @@ public class CustomVisionAnalyser : MonoBehaviour
 
     public Vector3 GetCursorPositionOnMesh()
     {
-        var eyeGazeProvider = CoreServices.InputSystem?.EyeGazeProvider;
-        if (eyeGazeProvider != null)
-        {
-            
-            RaycastHit hitInfo;
-            if (Physics.Raycast(Camera.main.transform.position/*eyeGazeProvider.GazeOrigin*/, eyeGazeProvider.GazeDirection, out hitInfo, maxDistance, 8))
-            {
-                GameObject hitpoint = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-                hitpoint.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                hitpoint.transform.position = hitInfo.point;
-                return hitInfo.point;
-            }
-            else
-            {
-                return new Vector3(0, 0, 0);
-            }
-        }
+        var headPosition = Camera.main.transform.position;
+        var gazeDirection = Camera.main.transform.forward;
 
-       
+        RaycastHit hitInfo;
+        if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
+        {
+            // If the raycast hit a hologram, use that as the focused object.
+            return hitInfo.point;
+        }
         else
         {
             Debug.Log("No mesh hit\n");
-            textMesh.GetComponent<TextMesh>().text += "No mesh hit\n";
 
             return new Vector3(0, 0, 0);
         }
+    }
+
+    public void MakeBoundingBoxInteractable(GameObject obj)
+    {
+        Rigidbody body = obj.AddComponent<Rigidbody>();
+        body.mass = 100;
+        body.useGravity = false;
+        body.isKinematic = true;
     }
 }

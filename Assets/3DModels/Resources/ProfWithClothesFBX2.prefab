@@ -4172,8 +4172,8 @@ MonoBehaviour:
   animatorpara: motion
   animationType: 0
   targetPosition: {x: 0, y: 0, z: 0}
-  collision_range: 0.1
-  speed: 0.2
+  collision_range: 1
+  speed: 0.1
   sit_to_cube: 0.2
 --- !u!1 &7642405083564466744
 GameObject:

@@ -73,35 +73,41 @@ public class MotionManager : MonoBehaviour
             SetAnimation(animationType);
         }
     }
-    public void InteractSit(GameObject obj)
+    public void InteractSit(IEnumerator coroutine, Vector3 newPosition)
     {
-        //Sit(obj);
-        IEnumerator coroutine = Sit(obj);
+        coroutine = Sit(newPosition);
         StartCoroutine(coroutine);
     }
-    private IEnumerator Sit(GameObject obj)
+    private IEnumerator Sit(Vector3 newPosition)
     //private void Sit(GameObject obj)
     {
-        Vector3 newPosition = obj.transform.position;
+        //float y = GameObject.Find("coordinate").GetComponent<Transform>().position.y;
+        float ori_local_y = gameObject.transform.localPosition.y;
 
-        //if character is far from object, then go to the object.
-        while (collision_range < Vector3.Distance(gameObject.transform.position, newPosition))
+        //if the character is far from new position, walk to new position.
+        while (collision_range < Vector3.Distance(gameObject.transform.position, new Vector3(newPosition.x, gameObject.transform.position.y, newPosition.z)))
         {
             if (animationType != AnimationType.Walking)
             {
                 animationType = AnimationType.Walking;
                 SetAnimation(animationType);
+                gameObject.transform.LookAt(new Vector3(newPosition.x, gameObject.transform.position.y, newPosition.z));
             }
-            gameObject.transform.LookAt(newPosition);
-            gameObject.transform.position += gameObject.transform.forward * speed;
+            gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime;
+            gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, ori_local_y, gameObject.transform.localPosition.z);
             yield return null;
-        }
-        animationType = AnimationType.Sitting;
-        SetAnimation(animationType);
-        gameObject.transform.LookAt(Camera.main.transform.position);
-        gameObject.transform.position = obj.transform.position + gameObject.transform.forward * sit_to_cube;
 
+        }
+        //if the character is near new position, stop and sit.
+        {
+            animationType = AnimationType.Sitting;
+            SetAnimation(animationType);
+            Vector3 lookat = new Vector3(Camera.main.transform.position.x, this.gameObject.transform.position.y, Camera.main.transform.position.z);
+            gameObject.transform.LookAt(lookat);
+            gameObject.transform.position = new Vector3(newPosition.x, this.gameObject.transform.position.y, newPosition.z) + gameObject.transform.forward * 0.4f;
+        }
     }
+    
 
 
     public void SetAnimation(AnimationType animationType)

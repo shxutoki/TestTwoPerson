@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AddMoreInteraction.unity
-    guid: e00e04eed29fafe4d8dabeb5d52c7868
+    path: Assets/Scenes/AddCustomVision.unity
+    guid: 048a92efc4f579d438f609e45f42a061
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: ea4d393f0ebe5914b856c4e61a3fa9a0, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b9e9e69c8c087f64b9a47ec196358435, type: 2}

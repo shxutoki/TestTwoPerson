@@ -63,25 +63,6 @@ public class CapturePhotoScript : MonoBehaviour
         }
     }
 
-    /*void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
-    {
-        // Copy the raw image data into our target texture
-        photoCaptureFrame.UploadImageDataToTexture(targetTexture);
-
-        // Create a gameobject that we can apply our texture to
-        GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        Renderer quadRenderer = quad.GetComponent<Renderer>() as Renderer;
-        quadRenderer.material = new Material(Shader.Find("Unlit/Texture"));
-
-        quad.transform.parent = this.transform;
-        quad.transform.localPosition = new Vector3(0.0f, 0.0f, 3.0f);
-
-        quadRenderer.material.SetTexture("_MainTex", targetTexture);
-
-        // Deactivate our camera
-        photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
-    }*/
-
     void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
     {
         textMesh.GetComponent<TextMesh>().text += "Stopped photo capture.";
