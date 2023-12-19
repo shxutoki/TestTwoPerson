@@ -10,7 +10,9 @@ public class CapturePhotoScript : MonoBehaviour
     PhotoCapture photoCaptureObject = null;
     Texture2D targetTexture = null;
 
-    public GameObject textMesh;
+    public GameObject CaptureCursor;
+    public GameObject WaitForResult;
+
 
 
     private string _filePath;
@@ -20,6 +22,9 @@ public class CapturePhotoScript : MonoBehaviour
     // Use this for initialization
     public void OnCaptureButtonClicked()
     {
+        CaptureCursor.SetActive(false);
+        WaitForResult.SetActive(true);
+
         CustomVisionAnalyser.Instance.PlaceAnalysisLabel();
 
         Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
@@ -53,7 +58,6 @@ public class CapturePhotoScript : MonoBehaviour
     {
         if (result.success)
         {
-            textMesh.GetComponent<TextMesh>().text = "success!";
             photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
         }
         else
@@ -65,7 +69,6 @@ public class CapturePhotoScript : MonoBehaviour
 
     void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
     {
-        textMesh.GetComponent<TextMesh>().text += "Stopped photo capture.";
 
         // Shutdown our photo capture resource
         photoCaptureObject.Dispose();

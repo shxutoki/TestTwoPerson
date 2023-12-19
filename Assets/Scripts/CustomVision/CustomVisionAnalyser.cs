@@ -20,6 +20,11 @@ public class CustomVisionAnalyser : MonoBehaviour
     public float probabilityThreshold = 0.7f;
 
 
+    public GameObject CaptureCursor;
+    public GameObject WaitForResult;
+
+    public GameObject Appbar;
+
     /// <summary>
     /// Insert your Prediction Key here
     /// </summary>
@@ -35,7 +40,6 @@ public class CustomVisionAnalyser : MonoBehaviour
     /// </summary>
     [HideInInspector] public byte[] imageBytes;
 
-    public GameObject textMesh;
 
 
     /// <summary>
@@ -100,13 +104,15 @@ public class CustomVisionAnalyser : MonoBehaviour
             Texture2D tex = new Texture2D(1, 1);
             tex.LoadImage(imageBytes);
             quadRenderer.material.SetTexture("_MainTex", tex);
-            textMesh.GetComponent<TextMesh>().text += "LoadImage";
 
             // The response will be in JSON format, therefore it needs to be deserialized  
             
             AnalysisObject analysisObject = JsonConvert.DeserializeObject<AnalysisObject>(jsonResponse);
 
             FinaliseLabel(analysisObject);
+
+            CaptureCursor.SetActive(true);
+            WaitForResult.SetActive(false);
 
         }
     }
@@ -139,7 +145,6 @@ public class CustomVisionAnalyser : MonoBehaviour
             Debug.Log(bestPrediction.Probability);
             Debug.Log(bestPrediction.TagName);
 
-            textMesh.GetComponent<TextMesh>().text += bestPrediction.TagName + bestPrediction.Probability.ToString();
 
             if (bestPrediction.Probability > probabilityThreshold)
             {
@@ -151,6 +156,7 @@ public class CustomVisionAnalyser : MonoBehaviour
                 GameObject objBoundingBox = DrawInSpace.Instance.DrawCube((float)bestPrediction.BoundingBox.Width, (float)bestPrediction.BoundingBox.Height);
                 objBoundingBox.transform.parent = quad.transform;
                 objBoundingBox.transform.localPosition = CalculateBoundingBoxPosition(quadBounds, bestPrediction.BoundingBox);
+                objBoundingBox.layer = 2;
 
                 objBoundingBox.transform.SetParent(transform);
                 MakeBoundingBoxInteractable(objBoundingBox);
@@ -178,6 +184,10 @@ public class CustomVisionAnalyser : MonoBehaviour
     /// </summary>
     public void PlaceAnalysisLabel()
     {
+        if (GameObject.Find("Label"))
+        {
+            Destroy(GameObject.Find("Label"));
+        }
         GameObject panel = new GameObject("Label");
         TextMeshPro label = panel.AddComponent<TextMeshPro>();
         label.fontSizeMin = 1;
@@ -202,17 +212,21 @@ public class CustomVisionAnalyser : MonoBehaviour
             label.transform.rotation = Quaternion.LookRotation(gazeDirection);
 
         }
-
+        if (GameObject.Find("IMGQuad"))
+        {
+            Destroy(GameObject.Find("IMGQuad"));
+        }
         // Create a GameObject to which the texture can be applied
         quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        textMesh.GetComponent<TextMesh>().text += "create quad!";
+        quad.name = "IMGQuad";
+
         quadRenderer = quad.GetComponent<Renderer>() as Renderer;
         Material m = new Material(Shader.Find("Legacy Shaders/Transparent/Diffuse"));
         quadRenderer.material = m;
 
         // Here you can set the transparency of the quad. Useful for debugging
         // Allows you to see the picture taken in the real world
-        float transparency = 0.5f;
+        float transparency = 0.0f;
         quadRenderer.material.color = new Color(1, 1, 1, transparency);
 
         //Set the position and scale of the quad depending on user position
@@ -285,5 +299,14 @@ public class CustomVisionAnalyser : MonoBehaviour
         body.mass = 100;
         body.useGravity = false;
         body.isKinematic = true;
+        BoundingBox bb = obj.AddComponent<BoundingBox>();
+        bb.Target = obj;
+        bb.BoundsOverride = obj.GetComponent<BoxCollider>();
+        bb.BoxMaterial = obj.GetComponent<Renderer>().material;
+        bb.BoxGrabbedMaterial = obj.GetComponent<Renderer>().material;
+        GameObject appbar = Instantiate(Appbar);
+        appbar.transform.localScale = new Vector3(2, 2, 2);
+        appbar.layer = 8;
+        appbar.GetComponent<AppBar>().Target = obj.GetComponent<BoundingBox>();
     }
 }

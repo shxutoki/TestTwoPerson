@@ -21,25 +21,25 @@ public class ChangeClothesSize : MonoBehaviour
 
     public void OnButtonClickedChangeSize()
     {
-        PhotonFashionView[] photonFashionViews;
-        photonFashionViews = GameObject.FindObjectsOfType<PhotonFashionView>();
-        foreach (PhotonFashionView fashionview in photonFashionViews)
+        PhotonFashionViewNew[] photonFashionViewNews;
+        photonFashionViewNews = GameObject.FindObjectsOfType<PhotonFashionViewNew>();
+        foreach (PhotonFashionViewNew fashionviewnew in photonFashionViewNews)
         {
-            if (fashionview.gameObject.GetComponent<PhotonView>().IsMine)
+            if (fashionviewnew.gameObject.GetComponent<PhotonView>().IsMine)
             {
-                FittingModel = fashionview.gameObject;
+                FittingModel = fashionviewnew.gameObject;
             }
         }
-        for (int i = 0; i < FittingModel.GetComponent<PhotonFashionView>().fasions_vaild.Count; i++)
+        for (int i = 0; i < FittingModel.GetComponent<PhotonFashionViewNew>().fasions_vaild.Count; i++)
         {
             if (i == sizeNum)
             {
-                FittingModel.GetComponent<PhotonFashionView>().fasions_vaild[i] = true;
+                FittingModel.GetComponent<PhotonFashionViewNew>().fasions_vaild[i] = true;
                 Debug.Log(i);
             }
             else
             {
-                FittingModel.GetComponent<PhotonFashionView>().fasions_vaild[i] = false;
+                FittingModel.GetComponent<PhotonFashionViewNew>().fasions_vaild[i] = false;
             }
         }
     }

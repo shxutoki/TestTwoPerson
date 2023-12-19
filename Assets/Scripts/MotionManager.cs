@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MotionManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MotionManager : MonoBehaviour
     }
 
     Animator animator;
+    Animator[] animators;
 
     public AnimationType animationType;
 
@@ -24,6 +26,9 @@ public class MotionManager : MonoBehaviour
     public float speed = 0.01f;
     public float sit_to_cube = 0.2f;
 
+    float timer = 2.0f;
+    int anitypenum = 0;
+
     private void Awake()
     {
 
@@ -31,14 +36,31 @@ public class MotionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        if (GetComponent<Animator>())
+        {
+            animator = GetComponent<Animator>();
+        }
+        else
+        {
+            animators = GetComponentsInChildren<Animator>();
+        }
         targetPosition = this.gameObject.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        /*timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            anitypenum++;
+            if (anitypenum == 4)
+            {
+                anitypenum = 0;
+            }
+            SetAnimationint(anitypenum);
+            timer = 2.0f;
+        }*/
     }
 
     public void WalktoPosition(IEnumerator coroutine, Vector3 newPosition)
@@ -59,6 +81,7 @@ public class MotionManager : MonoBehaviour
             if (animationType != AnimationType.Walking)
             {
                 animationType = AnimationType.Walking;
+                this.gameObject.GetComponent<PhotonFashionViewNew>().motion = (int)animationType;
                 SetAnimation(animationType);
                 gameObject.transform.LookAt(new Vector3(newPosition.x, gameObject.transform.position.y, newPosition.z));
             }
@@ -70,6 +93,7 @@ public class MotionManager : MonoBehaviour
         //if the character is near new position, stop and idle.
         {
             animationType = AnimationType.Idle;
+            this.gameObject.GetComponent<PhotonFashionViewNew>().motion = (int)animationType;
             SetAnimation(animationType);
         }
     }
@@ -90,6 +114,7 @@ public class MotionManager : MonoBehaviour
             if (animationType != AnimationType.Walking)
             {
                 animationType = AnimationType.Walking;
+                this.gameObject.GetComponent<PhotonFashionViewNew>().motion = (int)animationType;
                 SetAnimation(animationType);
                 gameObject.transform.LookAt(new Vector3(newPosition.x, gameObject.transform.position.y, newPosition.z));
             }
@@ -101,10 +126,11 @@ public class MotionManager : MonoBehaviour
         //if the character is near new position, stop and sit.
         {
             animationType = AnimationType.Sitting;
+            this.gameObject.GetComponent<PhotonFashionViewNew>().motion = (int)animationType;
             SetAnimation(animationType);
             Vector3 lookat = new Vector3(Camera.main.transform.position.x, this.gameObject.transform.position.y, Camera.main.transform.position.z);
             gameObject.transform.LookAt(lookat);
-            gameObject.transform.position = new Vector3(newPosition.x, this.gameObject.transform.position.y, newPosition.z) + gameObject.transform.forward * 0.4f;
+            gameObject.transform.position = new Vector3(newPosition.x, this.gameObject.transform.position.y, newPosition.z) + gameObject.transform.forward * 0.1f;
         }
     }
     
@@ -112,7 +138,49 @@ public class MotionManager : MonoBehaviour
 
     public void SetAnimation(AnimationType animationType)
     {
-        animator.SetInteger(animatorpara, (int)animationType);
+        if (animator != null)
+        {
+            animator.SetInteger(animatorpara, (int)animationType);
+        }
+        else
+        {
+            foreach (Animator a in animators)
+            {
+                a.SetInteger(animatorpara, (int)animationType);
+            }
+        }
+        Debug.Log("set animation: " + animationType.ToString());
+    }
+
+    public void SetAnimationint(int animationType)
+    {
+        if (animator != null)
+        {
+            animator.SetInteger(animatorpara, animationType);
+        }
+        else
+        {
+            foreach (Animator a in animators)
+            {
+                a.SetInteger(animatorpara, animationType);
+            }
+        }
+        Debug.Log("set animation: " + animationType.ToString());
+    }
+
+    public void SetAnimationChangeClothes()
+    {
+        if (animator != null)
+        {
+            animator.SetBool("changeclothes", true);
+        }
+        else
+        {
+            foreach (Animator a in animators)
+            {
+                a.SetBool("changeclothes", true);
+            }
+        }
         Debug.Log("set animation: " + animationType.ToString());
     }
 }

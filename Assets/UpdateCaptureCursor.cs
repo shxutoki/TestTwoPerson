@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpdateCaptureCursor : MonoBehaviour
 {
-    public GameObject captureCursor;
+    GameObject captureCursor;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +21,28 @@ public class UpdateCaptureCursor : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
         {
-            // If the raycast hit a hologram, use that as the focused object.
-            captureCursor.transform.position = hitInfo.point;
+            if (hitInfo.collider.gameObject.layer == 31)
+            {
+                // If the raycast hit a hologram, use that as the focused object.
+                captureCursor.transform.position = hitInfo.point;
+                Vector3 lookat = headPosition;
+                captureCursor.transform.LookAt(lookat);
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                captureCursor.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
+                Vector3 lookat = headPosition;
+                captureCursor.transform.LookAt(lookat);
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            captureCursor.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
+            Vector3 lookat = headPosition;
+            captureCursor.transform.LookAt(lookat);
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }

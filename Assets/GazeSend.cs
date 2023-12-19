@@ -27,11 +27,15 @@ public class GazeSend : MonoBehaviour
         {
             HeadVis.transform.position = Camera.main.transform.position;//eyeGazeProvider.GazeOrigin;
             RaycastHit hitInfo;
-            Physics.Raycast(Camera.main.transform.position/*eyeGazeProvider.GazeOrigin*/, eyeGazeProvider.GazeDirection, out hitInfo, maxDistance, 8);
+            Physics.Raycast(Camera.main.transform.position/*eyeGazeProvider.GazeOrigin*/, eyeGazeProvider.GazeDirection, out hitInfo);
             //Debug.Log(hitInfo.point);
             if (hitInfo.point != Vector3.zero)
             {
-                GazePointVis.transform.position = hitInfo.point;
+                if (hitInfo.collider.gameObject.layer != 8)
+                {
+                    GazePointVis.transform.position = hitInfo.point;
+
+                }
             }
             else
             {
@@ -53,8 +57,15 @@ public class GazeSend : MonoBehaviour
         Debug.Log($"<color=red>Stop Client (address: {address}, port: {port})</color>");
     }
 
-    public void SetPartnerIp(string ip)
+    public void SetPartnerIp(string ip, int p)
     {
+        if ((ip == GetComponent<uOscClient>().address) && (p == GetComponent<uOscClient>().port))
+        {
+            return;
+        }
+        GetComponent<uOscClient>().StopClient();
         GetComponent<uOscClient>().address = ip;
+        GetComponent<uOscClient>().port = p;
+        GetComponent<uOscClient>().StartClient();
     }
 }

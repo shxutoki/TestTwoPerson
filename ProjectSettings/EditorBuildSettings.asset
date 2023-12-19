@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AddCustomVision.unity
-    guid: 048a92efc4f579d438f609e45f42a061
+    path: Assets/Scenes/control.unity
+    guid: 7f6bc573d1306184591a2aecfff44434
+  - enabled: 1
+    path: Assets/Scenes/WithSharedGaze.unity
+    guid: 526056d9506d44a45a9981771b4d0cc5
+  - enabled: 1
+    path: Assets/Scenes/WithInteractiveAvatar.unity
+    guid: d17512a65518fe0419e86ccd9ae05300
+  - enabled: 1
+    path: Assets/Scenes/CombinedGazeAvatar.unity
+    guid: 570646ebd5a570a4c90da14210886102
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: ea4d393f0ebe5914b856c4e61a3fa9a0, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b9e9e69c8c087f64b9a47ec196358435, type: 2}

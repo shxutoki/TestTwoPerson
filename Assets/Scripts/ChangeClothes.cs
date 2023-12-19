@@ -22,6 +22,7 @@ public class ChangeClothes : MonoBehaviour
 
     public void OnButtonClickedChangeClothes()
     {
+        /*
         PhotonFashionView[] photonFashionViews;
         photonFashionViews = GameObject.FindObjectsOfType<PhotonFashionView>();
         foreach (PhotonFashionView fashionview in photonFashionViews)
@@ -44,5 +45,38 @@ public class ChangeClothes : MonoBehaviour
                 clothesRenderer.material.mainTexture = tex;
             }
         }
+        */
+        PhotonFashionViewNew[] photonFashionViewNews;
+        photonFashionViewNews = GameObject.FindObjectsOfType<PhotonFashionViewNew>();
+        foreach (PhotonFashionViewNew fashionviewnew in photonFashionViewNews)
+        {
+            if (fashionviewnew.gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                FittingModel = fashionviewnew.gameObject;
+            }
+        }
+
+        FittingModel.GetComponent<MotionManager>().SetAnimationChangeClothes();
+        List<GameObject> modelClothess = FittingModel.GetComponent<PhotonFashionViewNew>().ModelTshirts;
+        FittingModel.GetComponent<PhotonFashionViewNew>().tex_Num = this.texNum;
+        Texture tex = this.gameObject.GetComponent<Renderer>().material.mainTexture;
+        foreach (GameObject modelClothes in modelClothess)
+        {
+            if (modelClothes.transform.parent.parent.gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                var clothesRenderer = modelClothes.GetComponent<Renderer>();
+                clothesRenderer.material.mainTexture = tex;
+            }
+        }
+        
+    }
+
+    public void OnClickCloseInteraction()
+    {
+        if (GameObject.Find("AppStatusController") != null)
+        {
+            GameObject.Find("AppStatusController").GetComponent<AppStatusController>().SetTshirtCollection();
+        }
+        
     }
 }

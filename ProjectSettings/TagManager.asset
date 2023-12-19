@@ -10,6 +10,7 @@ TagManager:
   - OtherCursor
   - Bullet
   - Model
+  - TshirtOnModel
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: TestTwoPerson
+  productName: Wu
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -630,14 +630,14 @@ PlayerSettings:
     Windows Store Apps: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Template3D
+  metroPackageName: 
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 003da3cc2b9bda01
-  metroApplicationDescription: Template_3D
+  metroApplicationDescription: Wu
   wsaImages: {}
   metroTileShortName: TestTwoPerson
   metroTileShowName: 0
@@ -653,7 +653,7 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
-      CodeGeneration: True
+      EnterpriseAuthentication: True
       VideosLibrary: True
       Location: True
       HumanInterfaceDevice: True
@@ -689,8 +689,8 @@ PlayerSettings:
       Contacts: True
       InternetClient: True
       Proximity: True
+      CodeGeneration: True
       BackgroundMediaPlayback: True
-      EnterpriseAuthentication: True
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: True

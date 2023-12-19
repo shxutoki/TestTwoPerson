@@ -38,4 +38,13 @@ public class GazeReceive : MonoBehaviour
     {
         Debug.Log($"<color=blue>Stop Server (port: {port})</color>");
     }
+
+    public void SetReceivePort(int p)
+    {
+        if (p == GetComponent<uOscServer>().port)
+            return;
+        GetComponent<uOscServer>().StopServer();
+        GetComponent<uOscServer>().port = p;
+        GetComponent<uOscServer>().StartServer();
+    }
 }

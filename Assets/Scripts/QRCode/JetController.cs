@@ -17,5 +17,8 @@ public class JetController : MonoBehaviour
         var childObj = transform.GetChild(0);
         childObj.SetPositionAndRotation(pose.position, pose.rotation);
         childObj.gameObject.SetActive(true);
+        var plane = transform.GetChild(1);
+        plane.SetPositionAndRotation(pose.position, pose.rotation);
+        plane.gameObject.SetActive(true);
     }
 }
