@@ -17,7 +17,7 @@ public class GenerateTshirtCollection : MonoBehaviour
         {
             TshirtIMGs.Add((Texture2D)texture);
         }
-        GenerateTshirts();
+        Generate2rowTshirts();
     }
 
     // Update is called once per frame
@@ -33,6 +33,35 @@ public class GenerateTshirtCollection : MonoBehaviour
         int y = 1;
         int z = -1;
         for (int i = StartNUM; i < 20 + StartNUM; i++)
+        {
+            GameObject InstantiatedTshirt = Instantiate(Tshirt, this.transform);
+            InstantiatedTshirt.GetComponent<Renderer>().material.mainTexture = TshirtIMGs[i];
+            InstantiatedTshirt.GetComponent<ChangeClothes>().texNum = i;
+            InstantiatedTshirt.transform.localPosition = new Vector3(x * 4, y * 4, z * 10);
+            if (z > 0)
+            {
+                InstantiatedTshirt.transform.Rotate(new Vector3(0, 180, 0));
+            }
+            x = x + 1;
+            if (x > 2)
+            {
+                x = -2;
+                y = y - 1;
+            }
+            if (y < 0)
+            {
+                z = 1;
+                y = 1;
+            }
+        }
+    }
+
+    public void Generate2rowTshirts()
+    {
+        int x = -2;
+        int y = 1;
+        int z = -1;
+        for (int i = StartNUM; i < 10 + StartNUM; i++)
         {
             GameObject InstantiatedTshirt = Instantiate(Tshirt, this.transform);
             InstantiatedTshirt.GetComponent<Renderer>().material.mainTexture = TshirtIMGs[i];

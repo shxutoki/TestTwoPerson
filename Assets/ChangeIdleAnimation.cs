@@ -31,7 +31,7 @@ public class ChangeIdleAnimation : MonoBehaviour
                 MyAvatar.GetComponent<MotionManager>().SetAnimationint(animationNum);
                 MyAvatar.GetComponent<Photon.Pun.PhotonFashionViewNew>().motion = animationNum;
                 animationNum++;
-                if (animationNum > 16)
+                if (animationNum > 23)
                 {
                     animationNum = 11;
                 }

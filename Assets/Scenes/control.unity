@@ -3126,7 +3126,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bcd8c28e2ff810a4fb86f243aa0023f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3793,7 +3793,7 @@ MonoBehaviour:
   RandomOffset: 0
   ClampY: 1
   PrefabsToInstantiate:
-  - {fileID: 8709822921092535430, guid: 186c8d8f219c7d843b2a3b5933948d9d, type: 3}
+  - {fileID: 1230761632280125118, guid: d19e152f58bfcbf49b27288593da7fd5, type: 3}
   AutoSpawnObjects: 1
 --- !u!1 &1366717712
 GameObject:

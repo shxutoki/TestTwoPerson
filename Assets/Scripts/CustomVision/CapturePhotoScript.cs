@@ -51,7 +51,7 @@ public class CapturePhotoScript : MonoBehaviour
     }
 
     /// <summary>
-    /// B‰eŒã‚Ì•Û‘¶ˆ—
+    /// ï¿½Bï¿½eï¿½ï¿½Ì•Û‘ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="result"></param>
     private void OnCapturedPhotoToDisk(PhotoCapture.PhotoCaptureResult result)
